@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="ALTRA — уютная кофейня Coffee To Go внутри бизнес-центра. Свежий кофе, авторские десерты, фреши, протеиновые коктейли и ароматная выпечка.">
+  <meta name="theme-color" content="#F9F6F0">
+  <title>ALTRA | Кофе внутри бизнес-центра</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', 'Inter', 'Helvetica Neue', sans-serif;
+      background-color: #FFFFFF;
+      color: #2E241F;
+      line-height: 1.4;
+    }
+
+    :root {
+      --cream: #FDF9F2;
+      --milk: #F9F6F0;
+      --coffee: #6F4E37;
+      --caramel: #C88E5B;
+      --dark-brown: #3B2A24;
+      --accent: #A4724A;
+      --shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s ease;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 2.3rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--dark-brown);
+    }
+
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 1.8rem;
+      }
+      section {
+        padding: 60px 0;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--coffee);
+      color: white;
+      font-weight: 500;
+      padding: 12px 32px;
+      border-radius: 48px;
+      text-decoration: none;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .btn:hover {
+      background-color: var(--dark-brown);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.25)), 
+        url('https://images.pexels.com/photos/1337380/coffee-shop-1337380.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        background-attachment: scroll;
+      }
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeUp 0.8s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-scroll {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #3e2c24;
+      margin-bottom: 1rem;
+    }
+
+    .features-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .feature-tag {
+      background: var(--milk);
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--coffee);
+    }
+
+    .about-img img {
+      width: 100%;
+      border-radius: 32px;
+      box-shadow: var(--shadow-sm);
+      object-fit: cover;
+      height: 100%;
+      max-height: 400px;
+    }
+
+    @media (max-width: 860px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    /* Блок преимуществ — фикс: 6 карточек, 3 в ряд на десктопе, идеально по центру */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 20px;
+    }
+
+    .benefit-card {
+      background: var(--milk);
+      padding: 28px 20px;
+      border-radius: 32px;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid rgba(111, 78, 55, 0.1);
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-8px);
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      border-color: var(--caramel);
+    }
+
+    .benefit-icon {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Новый блок: Вкусные закуски, авторские десерты, фреши и протеиновые коктейли */
+    .specialties-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      margin-top: 32px;
+    }
+
+    .specialty-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      text-align: center;
+      border: 1px solid #f0e3d8;
+    }
+
+    .specialty-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+    }
+
+    .specialty-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .specialty-card h3 {
+      margin: 18px 0 8px;
+      font-size: 1.3rem;
+      color: var(--dark-brown);
+    }
+
+    .specialty-card p {
+      padding: 0 16px 20px;
+      color: #5e4b3c;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1000px) {
+      .specialties-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 550px) {
+      .specialties-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .gallery-item {
+      border-radius: 28px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      aspect-ratio: 1 / 1;
+      background: #f2ede5;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .close-modal {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 42px;
+      color: white;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .quote-section {
+      background: linear-gradient(105deg, #F4EAE0 0%, #FCF7F0 100%);
+      text-align: center;
+      padding: 100px 20px;
+      margin: 0;
+    }
+    .quote-text {
+      font-size: 2rem;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--dark-brown);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.3;
+    }
+
+    @media (max-width: 768px) {
+      .quote-text {
+        font-size: 1.5rem;
+      }
+    }
+
+    .testimonial-slider {
+      max-width: 700px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+    .slider-container {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .testimonial-card {
+      flex: 0 0 100%;
+      background: white;
+      border-radius: 36px;
+      padding: 36px 28px;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      margin: 0 12px;
+      border: 1px solid #f0e3d8;
+    }
+    .stars {
+      color: #E5B85C;
+      font-size: 1.4rem;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+    .testimonial-text {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .slider-btn {
+      background: var(--coffee);
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 30px;
+    }
+    .slider-nav {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .contact-details p {
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+    }
+    .map-placeholder {
+      background: #E9E1D7;
+      border-radius: 32px;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #5c4b3c;
+      background-image: url('https://www.openstreetmap.org/export/embed.html?bbox=30.3,59.9,30.5,60.0&layer=mapnik&marker=60.0,30.4');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      border-radius: 32px;
+    }
+    .map-placeholder span {
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 48px;
+      backdrop-filter: blur(5px);
+    }
+    @media (max-width: 780px) {
+      .contacts-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    footer {
+      background-color: var(--dark-brown);
+      color: #F3EAE2;
+      padding: 48px 0 28px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    .social-icons {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+    }
+    .social-icons a {
+      color: #F3EAE2;
+      font-size: 1.5rem;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      color: var(--caramel);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+    .btn-menu {
+      background-color: #fff4ea;
+      color: var(--coffee);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .btn-menu:hover {
+      background-color: var(--caramel);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero" id="home">
+  <div class="container" style="width:100%">
+    <div class="hero-content">
+      <h1>ALTRA · Доброе утро начинается здесь</h1>
+      <p>Свежий кофе, авторские десерты, фреши и протеиновые коктейли в самом сердце бизнес-центра</p>
+      <a href="#menu-block" class="btn btn-menu" id="scrollToMenu">Посмотреть меню</a>
+    </div>
+  </div>
+</section>
+
+<main>
+  <!-- Блок О КОФЕЙНЕ ALTRA -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid fade-scroll">
+        <div class="about-text">
+          <h2>ALTRA — твой ритуал перед стартом</h2>
+          <p>Мы создали место, где можно начать день с хорошего кофе, провести короткую встречу или просто сделать приятную паузу среди рабочих задач. В ALTRA сочетаются энергия мегаполиса и теплота домашнего сервиса.</p>
+          <p>Тёплый интерьер, светлые тона и аромат свежей выпечки наполняют пространство вдохновением. Берите кофе с собой или оставайтесь на удобных диванах — мы рядом.</p>
+          <div class="features-list">
+            <span class="feature-tag">☕ Кофе навынос</span>
+            <span class="feature-tag">🛋️ Уютные диваны</span>
+            <span class="feature-tag">✨ Отдельные столики</span>
+            <span class="feature-tag">🍃 Спокойная атмосфера</span>
+          </div>
+        </div>
+        <div class="about-img">
+          <img src="https://images.pexels.com/photos/1450353/coffee-shop-interior-1450353.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Интерьер ALTRA с диванами и столиками" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Почему нас выбирают — сетка 3x2 без смещений -->
+  <section id="benefits" style="background-color: var(--cream);">
+    <div class="container">
+      <h2 class="fade-scroll">Почему выбирают ALTRA</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card fade-scroll"><div class="benefit-icon">☕</div><h3>Свежий кофе каждый день</h3><p>Зерно обжарено вручную, насыщенный вкус и аромат для идеального начала дня.</p></div>
+        <div class="benefit-card fade-scroll"><div class="benefit-icon">🥐</div><h3>Выпечка утром и в течение дня</h3><p>Круассаны, маффины и слойки из печи каждые 2 часа.</p></div>
+        <div class="benefit-card fade-scroll"><div class="benefit-icon">😊</div><h3>Дружелюбные бариста</h3><p>Улыбка и быстрое обслуживание, чтобы ваш день начинался позитивно.</p></div>
+        <div class="benefit-card fade-scroll"><div class="benefit-icon">💼</div><h3>Удобно для сотрудников БЦ</h3><p>Первый этаж бизнес-центра, за 1 минуту от лифтов.</p></div>
+        <div class="benefit-card fade-scroll"><div class="benefit-icon">📶</div><h3>Wi-Fi и комфортные места</h3><p>Работайте с ноутбуком или проводите короткие встречи за столиками.</p></div>
+        <div class="benefit-card fade-scroll"><div class="benefit-icon">⚡</div><h3>Быстрое обслуживание</h3><p>Ваш капучино готов за 90 секунд — даже в час пик.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- НОВЫЙ БЛОК: Вкусные закуски, авторские десерты, фреши и протеиновые коктейли -->
+  <section id="specialties">
+    <div class="container">
+      <h2 class="fade-scroll">Больше, чем просто кофе</h2>
+      <div class="specialties-grid">
+        <div class="specialty-card fade-scroll">
+          <img class="specialty-img" src="https://images.pexels.com/photos/11467626/coffee-sandwich-pastry-11467626.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Вкусные закуски" loading="lazy">
+          <h3>Сытные закуски</h3>
+          <p>Сэндвичи с лососем, теплые брускетты, киш с грибами — идеальный перекус между задачами.</p>
+        </div>
+        <div class="specialty-card fade-scroll">
+          <img class="specialty-img" src="https://images.pexels.com/photos/13913943/cheesecake-dessert-13913943.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Авторские десерты" loading="lazy">
+          <h3>Авторские десерты</h3>
+          <p>Чизкейк с маракуйей, брауни с морской солью, тарталетки от шеф-кондитера — каждый день новинки.</p>
+        </div>
+        <div class="specialty-card fade-scroll">
+          <img class="specialty-img" src="https://images.pexels.com/photos/2107702/fresh-smoothie-drink-2107702.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Свежие фреши" loading="lazy">
+          <h3>Фреши и смузи</h3>
+          <p>Апельсиновый, морковно-имбирный, зелёный смузи с мятой — заряд витаминов для продуктивности.</p>
+        </div>
+        <div class="specialty-card fade-scroll">
+          <img class="specialty-img" src="https://images.pexels.com/photos/7641928/protein-shake-gym-7641928.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Протеиновые коктейли" loading="lazy">
+          <h3>Протеиновые коктейли</h3>
+          <p>После тренировки или для бодрости: шоколадный протеин, бананово-овсяный, ягодный буст.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Интерактивная галерея -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="fade-scroll">Вдохновение в деталях</h2>
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item" data-src="https://images.pexels.com/photos/302896/coffee-cup-latte-art-barista-302896.jpeg?auto=compress&cs=tinysrgb&w=800"><img src="https://images.pexels.com/photos/302896/coffee-cup-latte-art-barista-302896.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Латте арт" loading="lazy"></div>
+        <div class="gallery-item" data-src="https://images.pexels.com/photos/3740521/croissant-coffee-breakfast-3740521.jpeg?auto=compress&cs=tinysrgb&w=800"><img src="https://images.pexels.com/photos/3740521/croissant-coffee-breakfast-3740521.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Круассан и кофе" loading="lazy"></div>
+        <div class="gallery-item" data-src="https://images.pexels.com/photos/6169408/barista-making-coffee-6169408.jpeg?auto=compress&cs=tinysrgb&w=800"><img src="https://images.pexels.com/photos/6169408/barista-making-coffee-6169408.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Улыбающаяся бариста ALTRA" loading="lazy"></div>
+        <div class="gallery-item" data-src="https://images.pexels.com/photos/730667/coffee-cup-muffin-cake-730667.jpeg?auto=compress&cs=tinysrgb&w=800"><img src="https://images.pexels.com/photos/730667/coffee-cup-muffin-cake-730667.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Шоколадный маффин" loading="lazy"></div>
+        <div class="gallery-item" data-src="https://images.pexels.com/photos/312418/coffee-cup-caffeine-cappuccino-312418.jpeg?auto=compress&cs=tinysrgb&w=800"><img src="https://images.pexels.com/photos/312418/coffee-cup-caffeine-cappuccino-312418.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Зерновой кофе" loading="lazy"></div>
+        <div class="gallery-item" data-src="https://images.pexels.com/photos/2771272/people-working-coffee-shop-2771272.jpeg?auto=compress&cs=tinysrgb&w=800"><img src="https://images.pexels.com/photos/2771272/people-working-coffee-shop-2771272.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Гости с ноутбуками в ALTRA" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- БЛОК НАСТРОЕНИЯ -->
+  <section class="quote-section fade-scroll" id="quoteBlock">
+    <div class="quote-text">«Иногда лучший план на день начинается с хорошего кофе в ALTRA.»</div>
+    <div style="margin-top: 24px; font-size: 1rem; color:#6F4E37;">— ALTRA Coffee To Go, бизнес-центр "Сити Плаза"</div>
+  </section>
+
+  <!-- ОТЗЫВЫ СЛАЙДЕР -->
+  <section id="reviews">
+    <div class="container">
+      <h2 class="fade-scroll">Наши гости говорят</h2>
+      <div class="testimonial-slider fade-scroll">
+        <div class="slider-container" id="sliderContainer">
+          <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">«Отличное место перед началом рабочего дня. Капучино идеальный, а протеиновый коктейль — must have!»</div><p>- Анна, менеджер</p></div>
+          <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">«Самый вкусный капучино в бизнес-центре! Авторский чизкейк и фреши великолепны.»</div><p>- Дмитрий, IT-директор</p></div>
+          <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">«Всегда приветливый персонал и очень уютно. Закуски и десерты — отдельная любовь!»</div><p>- Елена, финансист</p></div>
+        </div>
+        <div class="slider-nav">
+          <button class="slider-btn" id="prevSlide">←</button>
+          <button class="slider-btn" id="nextSlide">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section id="contacts" style="background-color: var(--milk);">
+    <div class="container">
+      <h2 class="fade-scroll">Контакты ALTRA</h2>
+      <div class="contacts-grid">
+        <div class="contact-details">
+          <p>📍 Бизнес-центр «Сити Плаза», 1 этаж, вход через центральный холл</p>
+          <p>📞 +7 (495) 123-45-67</p>
+          <p>⏰ Пн–Пт: 7:30 – 20:00 / Сб: 9:00 – 17:00 / Вс: выходной</p>
+          <a href="#" class="btn" id="routeBtn">🗺️ Построить маршрут</a>
+        </div>
+        <div class="map-placeholder" id="mockMap">
+          <span>📍 БЦ "Сити Плаза", ул. Центральная 15</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-logo">☕ ALTRA Coffee To Go</div>
+  <div style="margin: 12px 0;">Быстрый кофе, энергия и вкус для больших свершений</div>
+  <div class="social-icons">
+    <a href="#" aria-label="Instagram">📷</a>
+    <a href="#" aria-label="Telegram">✈️</a>
+    <a href="#" aria-label="VK">📘</a>
+  </div>
+  <div style="font-size: 0.8rem; opacity: 0.7;">© 2026 ALTRA — твой идеальный старт утра</div>
+</footer>
+
+<div id="imageModal" class="modal">
+  <button class="close-modal">&times;</button>
+  <img class="modal-img" id="modalImg" src="" alt="Полноразмерное изображение">
+</div>
+
+<script>
+  const fadeElements = document.querySelectorAll('.fade-scroll');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -10px 0px" });
+  fadeElements.forEach(el => observer.observe(el));
+
+  document.getElementById('scrollToMenu')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const benefitsSection = document.getElementById('benefits');
+    if (benefitsSection) benefitsSection.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Модальная галерея
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const closeModalBtn = document.querySelector('.close-modal');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  
+  function openModal(imgSrc) {
+    modalImg.src = imgSrc;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    modalImg.src = '';
+  }
+  galleryItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      const fullSrc = item.getAttribute('data-src');
+      if (fullSrc) openModal(fullSrc);
+    });
+  });
+  closeModalBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  });
+
+  // Слайдер отзывов
+  const sliderContainer = document.getElementById('sliderContainer');
+  const prevBtn = document.getElementById('prevSlide');
+  const nextBtn = document.getElementById('nextSlide');
+  let currentIndex = 0;
+  const slides = document.querySelectorAll('.testimonial-card');
+  const totalSlides = slides.length;
+  function updateSlider() {
+    if (!sliderContainer || !slides[0]) return;
+    const slideMargin = 24; // margin 12px слева+справа
+    const slideWidth = slides[0].offsetWidth + slideMargin;
+    sliderContainer.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+  if (prevBtn && nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateSlider();
+    });
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    });
+    window.addEventListener('resize', () => updateSlider());
+    setTimeout(updateSlider, 120);
+  }
+
+  document.getElementById('routeBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('📍 ALTRA: Бизнес-центр "Сити Плаза", г. Москва, ул. Центральная 15. Открыть карту с маршрутом?');
+  });
+
+  document.querySelectorAll('a[href="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      if(anchor.getAttribute('href') === '#') e.preventDefault();
+    });
+  });
+  
+  window.addEventListener('load', () => {
+    updateSlider();
+    fadeElements.forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight-100) el.classList.add('visible'); });
+  });
+</script>
+</body>
+</html>
