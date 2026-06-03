@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALTRA — Ваше лучшее начало дня</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Montserrat,sans-serif;background:#faf8f4;color:#333;line-height:1.6}
+.hero{
+height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:white;
+background:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=80');
+background-size:cover;background-position:center;
+}
+.hero-content{max-width:900px;padding:20px}
+.hero h1{font-size:clamp(3rem,8vw,6rem);margin-bottom:10px}
+.hero p{font-size:1.2rem;margin:20px 0}
+.btn{display:inline-block;padding:14px 28px;background:#b97841;color:white;text-decoration:none;border-radius:50px;transition:.3s}
+.btn:hover{transform:translateY(-3px)}
+section{padding:80px 20px}
+.container{max-width:1200px;margin:auto}
+h2{text-align:center;margin-bottom:40px;font-size:2.2rem}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about img{width:100%;border-radius:20px}
+.features{
+display:grid;
+grid-template-columns:repeat(3,minmax(250px,1fr));
+gap:25px;
+}
+.card{
+background:white;padding:30px;border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.3s;
+text-align:center;
+}
+.card:hover{transform:translateY(-8px)}
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+.quote{
+background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1800&q=80');
+background-size:cover;background-position:center;
+color:white;text-align:center;padding:120px 20px
+}
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+.gallery img{
+width:100%;height:250px;object-fit:cover;border-radius:15px;
+transition:.3s;
+}
+.gallery img:hover{transform:scale(1.03)}
+.reviews{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+.review{background:white;padding:25px;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.08)}
+footer{
+background:#2b2119;color:white;text-align:center;padding:40px 20px
+}
+@media(max-width:900px){
+.about{grid-template-columns:1fr}
+.features{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+.features{grid-template-columns:1fr}
+}
+.fade{opacity:0;transform:translateY(30px);transition:.8s}
+.fade.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<div class="hero-content">
+<h1>ALTRA</h1>
+<h3>Ваше лучшее начало дня</h3>
+<p>Капучино с идеальным латте-артом, свежая выпечка, авторские десерты, фреши и протеиновые коктейли в атмосфере современного бизнес-центра.</p>
+<a href="#about" class="btn">Узнать больше</a>
+</div>
+</header>
+
+<section id="about">
+<div class="container about fade">
+<div>
+<h2>Добро пожаловать в ALTRA</h2>
+<p>ALTRA — уютная кофейня внутри бизнес-центра, где приятно начать день, провести короткую встречу или сделать паузу между задачами.</p>
+<p>У нас ароматный кофе, свежая выпечка, вкусные закуски, авторские десерты, натуральные фреши и протеиновые коктейли для активного ритма жизни.</p>
+</div>
+<div>
+<img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80" alt="Кофейня">
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<h2>Почему нас выбирают</h2>
+<div class="features fade">
+<div class="card">☕<h3>Авторский кофе</h3></div>
+<div class="card">🥐<h3>Свежая выпечка</h3></div>
+<div class="card">🍰<h3>Десерты каждый день</h3></div>
+<div class="card">🍊<h3>Натуральные фреши</h3></div>
+<div class="card">💪<h3>Протеиновые коктейли</h3></div>
+<div class="card">😊<h3>Уют и сервис</h3></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<h2>Что можно попробовать</h2>
+<div class="menu-grid fade">
+<div class="card">☕ Кофейные напитки</div>
+<div class="card">🥐 Выпечка и завтраки</div>
+<div class="card">🥪 Закуски и сэндвичи</div>
+<div class="card">🍰 Авторские десерты</div>
+<div class="card">🍊 Свежевыжатые соки</div>
+<div class="card">💪 Протеиновые коктейли</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<h2>Галерея настроения</h2>
+<div class="gallery fade">
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80">
+<img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80">
+<img src="https://images.unsplash.com/photo-1481833761820-0509d3217039?auto=format&fit=crop&w=800&q=80">
+</div>
+</div>
+</section>
+
+<section class="quote">
+<h2>Хороший день начинается с маленьких удовольствий</h2>
+<p>ALTRA</p>
+</section>
+
+<section>
+<div class="container">
+<h2>Отзывы гостей</h2>
+<div class="reviews fade">
+<div class="review">★★★★★<br>Самый вкусный капучино в бизнес-центре.</div>
+<div class="review">★★★★★<br>Отличное место перед началом рабочего дня.</div>
+<div class="review">★★★★★<br>Уютно, быстро и всегда приветливо.</div>
+</div>
+</div>
+</section>
+
+<footer>
+<h3>ALTRA</h3>
+<p>Энергия вкуса. Комфорт момента.</p>
+<p>Пн–Пт: 08:00–20:00</p>
+</footer>
+
+<script>
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting) entry.target.classList.add('visible');
+});
+});
+document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
